@@ -1,0 +1,5 @@
+Procedure as says in task try to add new record in LOT
+
+Pipelined Function gets two params, which means years, and shows us which cars were produced in that years
+
+Trigger causes Error when user try to add new record in LOT whith price=0
