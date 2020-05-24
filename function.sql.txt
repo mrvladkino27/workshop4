@@ -1,5 +1,5 @@
-DROP TYPE tblGetCar;
-DROP TYPE rowYearCar;
+--DROP TYPE tblGetCar;
+--DROP TYPE rowYearCar;
 
 CREATE TYPE rowYearCar AS OBJECT (
     cmodel VARCHAR2(100),

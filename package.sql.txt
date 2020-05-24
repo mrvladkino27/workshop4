@@ -11,7 +11,7 @@ FUNCTION GetCar (first_year IN car.car_year%TYPE, second_year IN car.car_year%TY
 PROCEDURE AddLot( price IN out Lot.lot_price%type, vin IN out Lot.lot_vin%type, region in out Lot.lot_region%type, customer in out Lot.lot_cust%type );
 END PACK_CAR;
 /
-CREATE OR REPLACE PACKAGE BODY PACK_CAR_YEAR IS
+CREATE OR REPLACE PACKAGE BODY PACK_CAR IS
     FUNCTION GetCar (first_year IN car.car_year%TYPE, second_year IN car.car_year%TYPE)   
         RETURN tblGetCar  
         PIPELINED IS
