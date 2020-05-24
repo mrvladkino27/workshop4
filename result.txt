@@ -1,0 +1,309 @@
+
+Table CAR created.
+
+
+Table CAR altered.
+
+
+Table CAR_CYLINDERS created.
+
+
+Table CAR_CYLINDERS altered.
+
+
+Table CAR_MODEL created.
+
+
+Table CAR_MODEL altered.
+
+
+Table CAR_TYPE created.
+
+
+Table CAR_TYPE altered.
+
+
+Table COLOR created.
+
+
+Table COLOR altered.
+
+
+Table CUSTOMER created.
+
+
+Table CUSTOMER altered.
+
+
+Table DRIVE created.
+
+
+Table DRIVE altered.
+
+
+Table FUEL created.
+
+
+Table FUEL altered.
+
+
+Table LOT created.
+
+
+Table LOT altered.
+
+
+Table MANUFACTURER created.
+
+
+Table MANUFACTURER altered.
+
+
+Table REGION created.
+
+
+Table REGION altered.
+
+
+Table TRANSMISSION created.
+
+
+Table TRANSMISSION altered.
+
+
+Table US_STATE created.
+
+
+Table US_STATE altered.
+
+
+Table CAR altered.
+
+
+Table CAR altered.
+
+
+Table CAR altered.
+
+
+Table CAR altered.
+
+
+Table CAR altered.
+
+
+Table CAR altered.
+
+
+Table CAR_MODEL altered.
+
+
+Table CAR altered.
+
+
+Table LOT altered.
+
+
+Table LOT altered.
+
+
+Table LOT altered.
+
+
+Table REGION altered.
+
+
+Trigger LOT_CHECK_PRICE compiled
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+1 row inserted.
+
+
+Procedure ADDLOT compiled
+
+
+Type ROWYEARCAR compiled
+
+
+Type TBLGETCAR compiled
+
+
+Function GETCAR compiled
+
+
+Package PACK_CAR compiled
+
+
+Package Body PACK_CAR compiled
+
+TESTING PROCEDURE
+Your price: 1000
+Your vin: 1000000001
+Your region: memphis
+Your customer id: w3
+--------------------------------------------------
+--------------------------------------------------
+Insert price 1000
+Insert vin 1000000001
+Insert region memphis
+Insert customer (id,name): (w3, Alex )
+
+
+PL/SQL procedure successfully completed.
+
+Your price: 1000
+Your vin: 10
+Your region: 
+Your customer id: 
+--------------------------------------------------
+Your car 10 does not exist
+
+
+PL/SQL procedure successfully completed.
+
+Your price: 1000
+Your vin: 
+Your region: memphis
+Your customer id: w3
+--------------------------------------------------
+Your car  does not exist
+
+
+PL/SQL procedure successfully completed.
+
+Your price: 
+Your vin: 1000000001
+Your region: memphis
+Your customer id: w3
+--------------------------------------------------
+You have tried to input incorrect price
+
+
+PL/SQL procedure successfully completed.
+
+TESTING FUNCTION
+MODEL-----Manufactured by---------YEAR(1999,2020)
+Transporter     Volkswagen     2000
+Corolla     Toyota     2006
+GT 40     Ford     2017
+ 
+MODEL-----Manufactured by---------YEAR(2010,2020)
+GT 40     Ford     2017
+
+
+PL/SQL procedure successfully completed.
+
