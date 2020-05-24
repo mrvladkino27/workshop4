@@ -1,0 +1,117 @@
+---------------------------
+-- Populate US_STATE table
+---------------------------
+INSERT INTO US_STATE(state_name)
+VALUES('NE');
+INSERT INTO US_STATE(state_name)
+VALUES('TN');
+INSERT INTO US_STATE(state_name)
+VALUES('DC');
+---------------------------
+-- Populate Region table
+---------------------------
+INSERT INTO Region(region_name, region_state)
+VALUES('lincoln','NE');
+INSERT INTO Region(region_name, region_state)
+VALUES('memphis','TN');
+INSERT INTO Region(region_name, region_state)
+VALUES('washington','DC');
+---------------------------
+-- Populate Manufacturer table
+---------------------------
+INSERT INTO Manufacturer(company_name)
+VALUES('Toyota');
+INSERT INTO Manufacturer(company_name)
+VALUES('Volkswagen');
+INSERT INTO Manufacturer(company_name)
+VALUES('Ford');
+---------------------------
+-- Populate Car_Model table
+---------------------------
+INSERT INTO Car_Model(model_name, model_manufactured)
+VALUES('Corolla', 'Toyota');
+INSERT INTO Car_Model(model_name, model_manufactured)
+VALUES('Transporter', 'Volkswagen');
+INSERT INTO Car_Model(model_name, model_manufactured)
+VALUES('GT 40', 'Ford');
+---------------------------
+-- Populate Color table
+---------------------------
+INSERT INTO Color(color_name)
+VALUES('black');
+INSERT INTO Color(color_name)
+VALUES('red');
+INSERT INTO Color(color_name)
+VALUES('white');
+---------------------------
+-- Populate Fuel table
+---------------------------
+INSERT INTO Fuel(fuel_name)
+VALUES('gas');
+INSERT INTO Fuel(fuel_name)
+VALUES('diesel');
+INSERT INTO Fuel(fuel_name)
+VALUES('electric');
+---------------------------
+-- Populate Car_Type table
+---------------------------
+INSERT INTO Car_Type(type_name)
+VALUES('compact car');
+INSERT INTO Car_Type(type_name)
+VALUES('sedan');
+INSERT INTO Car_Type(type_name)
+VALUES('van');
+---------------------------
+-- Populate Transmission table
+---------------------------
+INSERT INTO Transmission(trans_name)
+VALUES('manual');
+INSERT INTO Transmission(trans_name)
+VALUES('automatic');
+INSERT INTO Transmission(trans_name)
+VALUES('cvt');
+---------------------------
+-- Populate Count_cylinders table
+---------------------------
+INSERT INTO Car_cylinders(count_cylinders)
+VALUES(4);
+INSERT INTO Car_cylinders(count_cylinders)
+VALUES(6);
+INSERT INTO Car_cylinders(count_cylinders)
+VALUES(5);
+---------------------------
+-- Populate Drive table
+---------------------------
+INSERT INTO Drive(drive_name)
+VALUES('AWD');
+INSERT INTO Drive(drive_name)
+VALUES('FWD');
+INSERT INTO Drive(drive_name)
+VALUES('RWD');
+---------------------------
+-- Populate Car table
+---------------------------
+INSERT INTO Car(car_vin, car_model, car_color, car_fuel, car_type, car_transmission, car_count_cylynders, car_year, car_mileage, car_condition, car_drive)
+VALUES('1000000001', 'Corolla', 'black', 'gas', 'compact car', 'manual', 4, 2006, 15000, 'original', 'RWD');
+INSERT INTO Car(car_vin, car_model, car_color, car_fuel, car_type, car_transmission, car_count_cylynders, car_year, car_mileage, car_condition, car_drive)
+VALUES('1000000002', 'Transporter', 'red', 'diesel', 'van', 'manual', 5, 2000, 600000, 'original', 'RWD');
+INSERT INTO Car(car_vin, car_model, car_color, car_fuel, car_type, car_transmission, car_count_cylynders, car_year, car_mileage, car_condition, car_drive)
+VALUES('1000000003', 'GT 40', 'white', 'gas', 'sedan', 'automatic', 6, 2017, 600, 'original', 'FWD');
+---------------------------
+-- Populate Customer table
+---------------------------
+INSERT INTO Customer(cust_id, cust_name)
+VALUES('l1','Bob');
+INSERT INTO Customer(cust_id, cust_name)
+VALUES('m2','Jack');
+INSERT INTO Customer(cust_id, cust_name)
+VALUES('w3','Alex');
+---------------------------
+-- Populate Lot table
+---------------------------
+INSERT INTO Lot(lot_price, lot_vin, lot_region, lot_cust)
+VALUES( 500, '1000000001', 'lincoln', 'l1');
+INSERT INTO Lot(lot_price, lot_vin, lot_region, lot_cust)
+VALUES( 150, '1000000002', 'memphis', 'm2');
+INSERT INTO Lot(lot_price, lot_vin, lot_region, lot_cust)
+VALUES( 15000, '1000000003', 'washington', 'w3');

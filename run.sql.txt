@@ -1,0 +1,95 @@
+SET SERVEROUTPUT ON
+
+DECLARE
+  PRICE NUMBER;
+  VIN VARCHAR2(30);
+  REGION VARCHAR2(50);
+  CUSTOMER VARCHAR2(30);
+BEGIN
+  DBMS_OUTPUT.PUT_LINE('TESTING PROCEDURE');
+  PRICE := 1000;
+  VIN := '1000000001';
+  REGION := 'memphis';
+  CUSTOMER := 'w3';
+
+  ADDLOT(
+    PRICE => PRICE,
+    VIN => VIN,
+    REGION => REGION,
+    CUSTOMER => CUSTOMER
+  ); 
+END;
+/
+DECLARE
+  PRICE NUMBER;
+  VIN VARCHAR2(30);
+  REGION VARCHAR2(50);
+  CUSTOMER VARCHAR2(30);
+BEGIN
+  PRICE := 1000;
+  VIN := '10';
+  REGION := null;
+  CUSTOMER := null;
+
+  ADDLOT(
+    PRICE => PRICE,
+    VIN => VIN,
+    REGION => REGION,
+    CUSTOMER => CUSTOMER
+  ); 
+END;
+/
+DECLARE
+  PRICE NUMBER;
+  VIN VARCHAR2(30);
+  REGION VARCHAR2(50);
+  CUSTOMER VARCHAR2(30);
+BEGIN
+  PRICE := 1000;
+  VIN := null;
+  REGION := 'memphis';
+  CUSTOMER := 'w3';
+
+  ADDLOT(
+    PRICE => PRICE,
+    VIN => VIN,
+    REGION => REGION,
+    CUSTOMER => CUSTOMER
+  ); 
+END;
+/
+DECLARE
+  PRICE NUMBER;
+  VIN VARCHAR2(30);
+  REGION VARCHAR2(50);
+  CUSTOMER VARCHAR2(30);
+BEGIN
+  PRICE := null;
+  VIN := '1000000001';
+  REGION := 'memphis';
+  CUSTOMER := 'w3';
+
+  ADDLOT(
+    PRICE => PRICE,
+    VIN => VIN,
+    REGION => REGION,
+    CUSTOMER => CUSTOMER
+  ); 
+END;
+
+/
+DECLARE
+    CURSOR TEST_CUR_1 IS SELECT * FROM TABLE(GetCar(1999, 2020)) ORDER BY cyear;
+    CURSOR TEST_CUR_2 IS SELECT * FROM TABLE(GetCar(2010, 2020)) ORDER BY cyear;
+BEGIN
+DBMS_OUTPUT.PUT_LINE('TESTING FUNCTION');
+DBMS_OUTPUT.PUT_LINE('MODEL-----Manufactured by---------YEAR(1999,2020)');
+    FOR car_record IN TEST_CUR_1 LOOP
+        DBMS_OUTPUT.PUT_LINE(car_record.CMODEL||'     '||car_record.producer||'     '||car_record.cyear);
+    END LOOP;
+DBMS_OUTPUT.PUT_LINE(' ');
+DBMS_OUTPUT.PUT_LINE('MODEL-----Manufactured by---------YEAR(2010,2020)');
+    FOR car_record IN TEST_CUR_2 LOOP
+        DBMS_OUTPUT.PUT_LINE(car_record.CMODEL||'     '||car_record.producer||'     '||car_record.cyear);
+    END LOOP;
+END;

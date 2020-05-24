@@ -1,0 +1,111 @@
+CREATE OR REPLACE PACKAGE PACK_CAR IS
+ TYPE rowYearCar IS RECORD (
+    cmodel VARCHAR2(100),
+    producer VARCHAR2(100),
+    cyear NUMBER
+); 
+TYPE tblGetCar IS TABLE OF rowYearCar;
+FUNCTION GetCar (first_year IN car.car_year%TYPE, second_year IN car.car_year%TYPE)
+    RETURN tblGetCar
+    PIPELINED;
+PROCEDURE AddLot( price IN out Lot.lot_price%type, vin IN out Lot.lot_vin%type, region in out Lot.lot_region%type, customer in out Lot.lot_cust%type );
+END PACK_CAR;
+/
+CREATE OR REPLACE PACKAGE BODY PACK_CAR_YEAR IS
+    FUNCTION GetCar (first_year IN car.car_year%TYPE, second_year IN car.car_year%TYPE)   
+        RETURN tblGetCar  
+        PIPELINED IS
+            CURSOR MY_CAR IS
+                SELECT CAR.CAR_MODEL as cmodel, CAR_MODEL.MODEL_MANUFACTURED as producer, CAR.CAR_YEAR as cyear
+                FROM CAR JOIN CAR_MODEL ON CAR.CAR_MODEL = CAR_MODEL.MODEL_NAME
+                WHERE CAR.CAR_YEAR BETWEEN TO_NUMBER(FIRST_YEAR) AND TO_NUMBER(SECOND_YEAR);
+        BEGIN
+                FOR CARR IN MY_CAR
+                LOOP
+                    PIPE ROW (CARR);
+                END LOOP;
+        END GetCar;
+    Procedure AddLot( price IN out Lot.lot_price%type, vin IN out Lot.lot_vin%type, region in out Lot.lot_region%type, customer in out Lot.lot_cust%type )
+        IS
+        no_car exception;
+        price_exist exception;
+        price_error exception;
+        car_except CAR.car_vin%TYPE;
+        region_except Lot.lot_region%type;
+        customer_except lot.lot_cust%type;
+        price_except lot.lot_price%type;
+        
+        cursor c1 is
+        SELECT REGION.region_name
+        FROM REGION
+        WHERE REGION.region_name = region;
+       
+        cursor c2 is
+        SELECT CUSTOMER.cust_name
+        FROM CUSTOMER
+        WHERE CUSTOMER.cust_id = customer;
+       
+        cursor c3 is
+        SELECT CAR.car_vin 
+        FROM CAR
+        WHERE CAR.car_vin = vin;
+       
+        cursor c4 is
+        SELECT LOT.lot_price
+        FROM LOT
+        WHERE LOT.lot_vin = vin and LOT.lot_price = price;
+        
+     BEGIN
+        DBMS_OUTPUT.PUT_LINE ('Your price: ' ||price);
+        DBMS_OUTPUT.PUT_LINE ('Your vin: ' ||vin);
+        DBMS_OUTPUT.PUT_LINE ('Your region: ' ||region);
+        DBMS_OUTPUT.PUT_LINE ('Your customer id: ' ||customer);
+        DBMS_OUTPUT.PUT_LINE ('--------------------------------------------------');
+    
+       open c1;
+       fetch c1 into region_except;
+       open c2;
+       fetch c2 into customer_except;
+       open c3;
+       fetch c3 into car_except;
+       open c4;
+       fetch c4 into price_except;
+       
+       if car_except is null then
+            RAISE no_car;
+        end if;
+       if region_except is null then
+          region := 'washington';
+       end if;
+       if customer_except is null then
+          customer := 'l1';
+          customer_except := 'Bob';
+       end if;
+       if price_except is not null then
+            RAISE price_exist;
+        end if;
+        if TO_NUMBER(price) <= 0  or price is null then
+            RAISE price_error;
+        end if;
+        DBMS_OUTPUT.PUT_LINE ('--------------------------------------------------');
+       DBMS_OUTPUT.PUT_LINE ('Insert price ' ||price);
+        DBMS_OUTPUT.PUT_LINE ('Insert vin ' ||vin);
+        DBMS_OUTPUT.PUT_LINE ('Insert region ' ||region);
+        DBMS_OUTPUT.PUT_LINE ('Insert customer (id,name): (' ||customer||', ' ||customer_except||' )');
+       INSERT INTO Lot(lot_price, lot_vin, lot_region, lot_cust)
+        VALUES( price, vin, region, customer);
+       commit;
+       close c1;
+       close c2;
+       close c3;
+       close c4;
+    EXCEPTION
+        WHEN no_car THEN
+       DBMS_OUTPUT.PUT_LINE ('Your car ' ||vin||' does not exist');
+       WHEN price_exist THEN
+       DBMS_OUTPUT.PUT_LINE ('Your lot where car ' ||vin||' was sold by ' || price || ' is already exist');
+       WHEN price_error THEN
+       DBMS_OUTPUT.PUT_LINE ('You have tried to input incorrect price');
+    END ADDLOT;
+END;
+

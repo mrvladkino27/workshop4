@@ -1,0 +1,24 @@
+DROP TYPE tblGetCar;
+DROP TYPE rowYearCar;
+
+CREATE TYPE rowYearCar AS OBJECT (
+    cmodel VARCHAR2(100),
+    producer VARCHAR2(100),
+    cyear NUMBER
+); 
+/
+CREATE TYPE tblGetCar IS TABLE OF rowYearCar;
+/
+CREATE OR REPLACE FUNCTION GetCar (first_year IN NUMBER, second_year IN NUMBER)   
+        RETURN tblGetCar  
+        PIPELINED AS
+            CURSOR MY_CAR IS
+                SELECT CAR.CAR_MODEL as cmodel, CAR_MODEL.MODEL_MANUFACTURED as producer, CAR.CAR_YEAR as cyear
+                FROM CAR JOIN CAR_MODEL ON CAR.CAR_MODEL = CAR_MODEL.MODEL_NAME
+                WHERE CAR.CAR_YEAR BETWEEN TO_NUMBER(FIRST_YEAR) AND TO_NUMBER(SECOND_YEAR);
+        BEGIN
+                FOR CARR IN MY_CAR
+                LOOP
+                    PIPE ROW (rowYearCar(CARR.cmodel, CARR.producer, CARR.cyear));
+                END LOOP;
+        END;
